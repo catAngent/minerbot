@@ -16,11 +16,11 @@ def main():
     tokenfile = open("./token", "r")
     bot = GatewayBot(token=tokenfile.read().replace("\r", "").replace("\n", ""), banner=None, intents=Intents.ALL)
     tokenfile.close()
-
+    
     commands.bot = bot
     admin_commands.bot = bot
     utils.bot = bot
-
+    
     sqltools.add_columns("users", [
         ("inventory", "BLOB", []),
         ("lang", "TEXT", "en"),
@@ -28,7 +28,7 @@ def main():
         ("to_add", "BLOB", []),
         ("settings", "BLOB", []),
     ])  # INTEGER TEXT REAL BLOB
-
+    
     @bot.listen()
     async def on_start(e: StartedEvent):
         print("started.")
